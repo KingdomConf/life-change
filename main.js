@@ -1,9 +1,9 @@
-function getSocialIconImage(platform) {
+function getSocialIconText(platform) {
   return {
-    facebook: "facebook.jpg",
-    instagram: "instagram.jpg",
-    email: "email.jpg"
-  }[platform] || "link.jpg";
+    facebook: 'f',
+    instagram: '📷',
+    email: '@'
+  }[platform] || '🔗';
 }
 
 function generateStaffCards() {
@@ -15,8 +15,8 @@ function generateStaffCards() {
     card.onclick = () => openModal(index);
 
     const socialIcons = staff.social.map(({ platform, url }) => `
-      <a href="${url}" target="_blank" class="social-icon" onclick="event.stopPropagation()">
-        <img src="${getSocialIconImage(platform)}" alt="${platform}" onerror="console.log('Failed to load:', this.src); this.style.display='none'; this.parentElement.style.backgroundColor='#667eea'; this.parentElement.style.color='white'; this.parentElement.style.fontSize='14px'; this.parentElement.innerHTML='${platform.charAt(0).toUpperCase()}';" />
+      <a href="${url}" target="_blank" class="social-icon ${platform}" onclick="event.stopPropagation()">
+        ${getSocialIconText(platform)}
       </a>
     `).join("");
 
@@ -48,8 +48,8 @@ function openModal(index) {
   document.getElementById("modalAbout").textContent = staff.about;
 
   const iconsHTML = staff.social.map(({ platform, url }) => `
-    <a href="${url}" target="_blank" class="social-icon">
-      <img src="${getSocialIconImage(platform)}" alt="${platform}" onerror="console.log('Failed to load:', this.src); this.style.display='none'; this.parentElement.style.backgroundColor='#667eea'; this.parentElement.style.color='white'; this.parentElement.style.fontSize='14px'; this.parentElement.innerHTML='${platform.charAt(0).toUpperCase()}';" />
+    <a href="${url}" target="_blank" class="social-icon ${platform}">
+      ${getSocialIconText(platform)}
     </a>
   `).join("");
 
