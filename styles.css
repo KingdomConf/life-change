@@ -102,7 +102,7 @@ body {
     text-decoration: none;
     overflow: hidden;
     border: 2px solid #ddd;
-    position: relative;
+    background: white;
 }
 
 .social-icon-img {
@@ -110,15 +110,9 @@ body {
     height: 35px !important;
     max-width: 35px !important;
     max-height: 35px !important;
-    min-width: 35px !important;
-    min-height: 35px !important;
     object-fit: cover !important;
     border-radius: 50% !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    display: block !important;
 }
 
 .social-icon:hover {
