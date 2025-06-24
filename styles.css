@@ -1,250 +1,84 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+function getSocialIconImage(platform) {
+  return {
+    facebook: "facebook.jpg",
+    instagram: "instagram.jpg",
+    email: "email.jpg"
+  }[platform] || "link.jpg";
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background: #FFFFFF;
-    min-height: 100vh;
-    padding: 40px 20px;
+function generateStaffCards() {
+  const staffGrid = document.getElementById("staffGrid");
+
+  staffData.forEach((staff, index) => {
+    const card = document.createElement("div");
+    card.className = "staff-card";
+    card.onclick = () => openModal(index);
+
+    const socialIcons = staff.social.map(({ platform, url }) => `
+      <a href="${url}" target="_blank" class="social-icon" onclick="event.stopPropagation()">
+        <img src="${getSocialIconImage(platform)}" alt="${platform}" class="social-icon-img" />
+      </a>
+    `).join("");
+
+    card.innerHTML = `
+      <img src="${staff.image}" alt="${staff.name}" class="staff-image" onerror="this.style.background='#ddd'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.innerHTML='📷';" />
+      <h3 class="staff-name">${staff.name}</h3>
+      <p class="staff-title">${staff.title}</p>
+      <div class="social-icons">${socialIcons}</div>
+    `;
+
+    staffGrid.appendChild(card);
+  });
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+function openModal(index) {
+  const staff = staffData[index];
+  const modalImage = document.getElementById("modalImage");
+  modalImage.src = staff.image;
+  modalImage.onerror = function() {
+    this.style.background = '#ddd';
+    this.style.display = 'flex';
+    this.style.alignItems = 'center';
+    this.style.justifyContent = 'center';
+    this.innerHTML = '📷';
+  };
+  
+  document.getElementById("modalName").textContent = staff.name;
+  document.getElementById("modalTitle").textContent = staff.title;
+  document.getElementById("modalAbout").textContent = staff.about;
+
+  const iconsHTML = staff.social.map(({ platform, url }) => `
+    <a href="${url}" target="_blank" class="social-icon">
+      <img src="${getSocialIconImage(platform)}" alt="${platform}" class="social-icon-img" />
+    </a>
+  `).join("");
+
+  document.getElementById("modalSocialIcons").innerHTML = iconsHTML;
+
+  // Show modal and completely lock background scrolling
+  document.getElementById("staffModal").style.display = "flex";
+  document.body.style.overflow = "hidden";
+  document.body.style.position = "fixed";
+  document.body.style.width = "100%";
+  document.documentElement.style.overflow = "hidden";
 }
 
-.header {
-    text-align: center;
-    margin-bottom: 60px;
-    color: #222;
+function closeModal() {
+  document.getElementById("staffModal").style.display = "none";
+  document.body.style.overflow = "";
+  document.body.style.position = "";
+  document.body.style.width = "";
+  document.documentElement.style.overflow = "";
 }
 
-.header h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    color: #667eea;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  generateStaffCards();
 
-.header p {
-    font-size: 1.2rem;
-    opacity: 0.8;
-}
-
-.staff-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.staff-card {
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.staff-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.staff-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 20px;
-    border: 5px solid #667eea;
-    transition: all 0.3s ease;
-    background: #f0f0f0;
-}
-
-.staff-card:hover .staff-image {
-    transform: scale(1.05);
-    border-color: #764ba2;
-}
-
-.staff-name {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 8px;
-}
-
-.staff-title {
-    font-size: 1rem;
-    color: #667eea;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.social-icon {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    overflow: hidden;
-    border: 2px solid #ddd;
-    background: white;
-}
-
-.social-icon-img {
-    width: 35px !important;
-    height: 35px !important;
-    max-width: 35px !important;
-    max-height: 35px !important;
-    object-fit: cover !important;
-    border-radius: 50% !important;
-    display: block !important;
-}
-
-.social-icon:hover {
-    transform: scale(1.2);
-    border-color: #667eea;
-}
-
-/* Modal Styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    backdrop-filter: blur(5px);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background: white;
-    padding: 0;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    animation: modalSlideIn 0.3s ease;
-    position: relative;
-}
-
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.modal-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 30px;
-    border-radius: 20px 20px 0 0;
-    text-align: center;
-    position: relative;
-}
-
-.modal-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 15px;
-    border: 4px solid white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    background: #f0f0f0;
-}
-
-.modal-name {
-    font-size: 1.8rem;
-    margin-bottom: 5px;
-}
-
-.modal-title {
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
-
-.close {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-}
-
-.close:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.modal-body {
-    padding: 30px;
-}
-
-.modal-about {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #444;
-    text-align: left;
-}
-
-.modal-social {
-    margin-top: 25px;
-    text-align: center;
-}
-
-.modal-social h4 {
-    margin-bottom: 15px;
-    color: #667eea;
-}
-
-@media (max-width: 768px) {
-    .header h1 {
-        font-size: 2rem;
-    }
-
-    .staff-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-    }
-
-    .modal-content {
-        margin: 10% auto;
-        width: 95%;
-    }
-}
+  document.querySelector(".close").onclick = closeModal;
+  window.onclick = (e) => {
+    if (e.target === document.getElementById("staffModal")) closeModal();
+  };
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+});
