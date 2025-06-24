@@ -131,8 +131,6 @@ body {
     height: 100vh;
     background-color: rgba(0,0,0,0.6);
     backdrop-filter: blur(5px);
-    overflow: hidden;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -148,6 +146,7 @@ body {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     animation: modalSlideIn 0.3s ease;
     position: relative;
+    margin: 0;
 }
 
 @keyframes modalSlideIn {
