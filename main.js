@@ -55,16 +55,20 @@ function openModal(index) {
 
   document.getElementById("modalSocialIcons").innerHTML = iconsHTML;
 
-  // Show modal and prevent background scrolling
+  // Show modal and completely lock background scrolling
   document.getElementById("staffModal").style.display = "flex";
   document.body.style.overflow = "hidden";
+  document.body.style.position = "fixed";
+  document.body.style.width = "100%";
   document.documentElement.style.overflow = "hidden";
 }
 
 function closeModal() {
   document.getElementById("staffModal").style.display = "none";
-  document.body.style.overflow = "auto";
-  document.documentElement.style.overflow = "auto";
+  document.body.style.overflow = "";
+  document.body.style.position = "";
+  document.body.style.width = "";
+  document.documentElement.style.overflow = "";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
