@@ -47,7 +47,7 @@ const staffData = [
     name: "Hannah Buchanan",
     title: "Children's Pastor",
     image: "hannah-buchanan.jpg",
-    about: "Hannah leads our children's ministry with creativity, energy, and a deep love for helping kids know Jesus.",
+    about: "Hannah Buchanan was born in Dallas, Texas, and raised in Cincinnati, Ohio, where she grew up as a preacher’s daughter deeply involved in ministry. Throughout her school and college years, she was an active participant in cheerleading and softball. After graduating from Miami University in 2021 with a degree in middle school education, Hannah spent three years teaching in the classroom. In 2022,vshevfaced the heartbreaking loss of her husband. During this difficult time, she leaned on God fully, allowing Him to guide her through the process of grief and healing. In 2024, feeling a strong calling, [Your Name] embraced her role as a children’s pastor. She finds deep fulfillment in teaching kids about Jesus, witnessing His love surround them, and helping them grow in their faith. In addition to her ministry work, Hannah is the proud mom of two young boys, ages 3 and 5. While they keep her on her toes and busy every day, she wouldn't have it any other way. She cherishes the joy and energy they bring to her life and is grateful for the opportunity to balance motherhood with her calling. Her journey has been one of resilience, faith, and a deep passion for inspiring the next generation to experience the love of Christ.",
     social: [
       { platform: "facebook", url: "https://www.facebook.com/hannah.gerlock" },
       { platform: "instagram", url: "https://www.instagram.com/hgerlock/" },
