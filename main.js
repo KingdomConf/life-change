@@ -1,9 +1,9 @@
-function getSocialIconText(platform) {
+function getSocialIconImage(platform) {
   return {
-    facebook: 'f',
-    instagram: '📷',
-    email: '@'
-  }[platform] || '🔗';
+    facebook: "facebook.jpg",
+    instagram: "instagram.jpg",
+    email: "email.jpg"
+  }[platform] || "link.jpg";
 }
 
 function generateStaffCards() {
@@ -15,8 +15,8 @@ function generateStaffCards() {
     card.onclick = () => openModal(index);
 
     const socialIcons = staff.social.map(({ platform, url }) => `
-      <a href="${url}" target="_blank" class="social-icon ${platform}" onclick="event.stopPropagation()">
-        ${getSocialIconText(platform)}
+      <a href="${url}" target="_blank" class="social-icon" onclick="event.stopPropagation()">
+        <img src="${getSocialIconImage(platform)}" alt="${platform}" class="social-icon-img" />
       </a>
     `).join("");
 
@@ -48,8 +48,8 @@ function openModal(index) {
   document.getElementById("modalAbout").textContent = staff.about;
 
   const iconsHTML = staff.social.map(({ platform, url }) => `
-    <a href="${url}" target="_blank" class="social-icon ${platform}">
-      ${getSocialIconText(platform)}
+    <a href="${url}" target="_blank" class="social-icon">
+      <img src="${getSocialIconImage(platform)}" alt="${platform}" class="social-icon-img" />
     </a>
   `).join("");
 
