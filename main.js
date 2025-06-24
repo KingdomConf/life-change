@@ -55,12 +55,24 @@ function openModal(index) {
 
   document.getElementById("modalSocialIcons").innerHTML = iconsHTML;
 
-  // Show modal immediately in correct position
+  // Get current scroll position within iframe
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const viewportHeight = window.innerHeight;
+  
+  // Calculate center position relative to current view
+  const centerPosition = scrollTop + (viewportHeight / 2);
+
+  // Show modal and position it in the center of current viewport
   const modal = document.getElementById("staffModal");
   const modalContent = modal.querySelector('.modal-content');
   
-  // Set initial position before showing
+  // Position modal content relative to current scroll position
+  modalContent.style.position = 'absolute';
+  modalContent.style.top = centerPosition + 'px';
+  modalContent.style.left = '50%';
+  modalContent.style.transform = 'translate(-50%, -50%)';
   modalContent.style.animation = 'modalSlideIn 0.2s ease';
+  
   modal.style.display = "block";
   
   // Prevent iframe content scrolling
