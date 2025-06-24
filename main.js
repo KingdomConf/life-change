@@ -55,13 +55,16 @@ function openModal(index) {
 
   document.getElementById("modalSocialIcons").innerHTML = iconsHTML;
 
-  document.getElementById("staffModal").style.display = "block";
+  // Show modal and prevent background scrolling
+  document.getElementById("staffModal").style.display = "flex";
   document.body.style.overflow = "hidden";
+  document.documentElement.style.overflow = "hidden";
 }
 
 function closeModal() {
   document.getElementById("staffModal").style.display = "none";
   document.body.style.overflow = "auto";
+  document.documentElement.style.overflow = "auto";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
