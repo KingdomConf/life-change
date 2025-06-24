@@ -16,7 +16,7 @@ function generateStaffCards() {
 
     const socialIcons = staff.social.map(({ platform, url }) => `
       <a href="${url}" target="_blank" class="social-icon" onclick="event.stopPropagation()">
-        <img src="${getSocialIconImage(platform)}" alt="${platform}" />
+        <img src="${getSocialIconImage(platform)}" alt="${platform}" onerror="console.log('Failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='${platform.charAt(0).toUpperCase()}';" />
       </a>
     `).join("");
 
@@ -49,7 +49,7 @@ function openModal(index) {
 
   const iconsHTML = staff.social.map(({ platform, url }) => `
     <a href="${url}" target="_blank" class="social-icon">
-      <img src="${getSocialIconImage(platform)}" alt="${platform}" />
+      <img src="${getSocialIconImage(platform)}" alt="${platform}" onerror="console.log('Failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='${platform.charAt(0).toUpperCase()}';" />
     </a>
   `).join("");
 
