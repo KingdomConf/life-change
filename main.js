@@ -55,8 +55,12 @@ function openModal(index) {
 
   document.getElementById("modalSocialIcons").innerHTML = iconsHTML;
 
-  // Show modal with block display for iframe compatibility
+  // Show modal immediately in correct position
   const modal = document.getElementById("staffModal");
+  const modalContent = modal.querySelector('.modal-content');
+  
+  // Set initial position before showing
+  modalContent.style.animation = 'modalSlideIn 0.2s ease';
   modal.style.display = "block";
   
   // Prevent iframe content scrolling
