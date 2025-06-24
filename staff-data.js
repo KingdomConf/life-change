@@ -36,7 +36,7 @@ const staffData = [
     name: "Levi & Ali Kritzwiser",
     title: "Student Pastors",
     image: "levi-ali-kritzwiser.jpg",
-    about: "Levi and Ali are passionate about investing in the next generation and leading students into a deeper relationship with Jesus.",
+    about: "Levi has been serving as a Student Pastor since September 2023. He has a deep passion for watching teens grow in their relationship with the Lord and walk boldly in their faith. Levi studied at Valor Christian College, where he earned a Bachelor’s degree in Arts of Christian Ministries with a minor in Pastoral Leadership. He is married to his amazing wife, Ali, and together they love doing life side by side. A big fan of sports, Levi also enjoys traveling and values spending quality time with the people around him. Whether he’s ministering to students, exploring new places, or simply hanging out, Levi is all about building relationships and pointing people to Jesus.",
     social: [
       { platform: "facebook", url: "https://www.facebook.com/levi.kritzwiser.9" },
       { platform: "instagram", url: "https://www.instagram.com/levikritzwiser/" },
